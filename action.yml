@@ -20,6 +20,8 @@ runs:
       with:
         path: ~/.cache/pypoetry
         key: setup-poetry-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+        restore-keys: |
+          setup-poetry-${{ runner.os }}-
     - run: ${GITHUB_ACTION_PATH}/run.sh
       shell: bash
       env:
