@@ -1,0 +1,26 @@
+name: "Setup Poetry Action"
+description: "An action to setup Poetry"
+branding:
+  icon: "package"
+  color: "black"
+inputs:
+  poetry-version:
+    description: "Poetry version"
+    required: false
+    default: ""
+  cache:
+    description: "Cache poetry"
+    required: false
+    default: false
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/cache@v4
+      if: ${{ inputs.cache }}
+      with:
+        path: ~/.cache/pypoetry
+        key: setup-poetry-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+    - run: ${GITHUB_ACTION_PATH}/run.sh
+      shell: bash
+      env:
+        POETRY_VERSION: ${{ inputs.poetry-version }}
