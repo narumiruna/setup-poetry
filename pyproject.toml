@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "setup-poetry-action"
+name = "setup-poetry"
 version = "0.1.0"
 description = ""
 authors = ["narumi <toucans-cutouts0f@icloud.com>"]
