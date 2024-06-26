@@ -1,4 +1,4 @@
-name: Poetry
+name: Test Poetry
 
 on:
   workflow_dispatch:
@@ -10,18 +10,22 @@ on:
       - main
 
 jobs:
-  poetry:
+  test-poetry:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - uses: ./
+      - name: Setup Poetry
+        uses: ./
         with:
           cache: true
-      - run: |
+      - name: Test Poetry
+        run: |
           poetry --version
           poetry config --list
           poetry env info
           poetry install --no-root
+        working-directory: ./test
