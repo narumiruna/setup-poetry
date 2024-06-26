@@ -24,3 +24,4 @@ jobs:
           poetry --version
           poetry config --list
           poetry env info
+          poetry install --no-root
