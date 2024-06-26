@@ -9,7 +9,7 @@ inputs:
     required: false
     default: ""
   cache:
-    description: "Cache poetry"
+    description: "Cache ~/.cache/pypoetry"
     required: false
     default: false
 runs:
