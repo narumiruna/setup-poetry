@@ -15,14 +15,16 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/cache@v4
-      if: ${{ inputs.cache }}
+    - name: Cache Poetry
+      if: ${{ inputs.cache == 'true' }}
+      uses: actions/cache@v4
       with:
         path: ~/.cache/pypoetry
         key: setup-poetry-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
         restore-keys: |
           setup-poetry-${{ runner.os }}-
-    - run: ${GITHUB_ACTION_PATH}/run.sh
+    - name: Install Poetry
+      run: ${GITHUB_ACTION_PATH}/run.sh
       shell: bash
       env:
         POETRY_VERSION: ${{ inputs.poetry-version }}
